@@ -26,9 +26,7 @@ export class PriceQueryEffects {
         const period = isCustom ? 'max' : action.period;
         return this.httpClient
           .get<PriceQueryResponse[]>(
-            `${this.env.apiURL}/beta/stock/${
-              action.symbol
-            }/chart/${period}?token=${this.env.apiKey}`
+            `api/beta/stock/${action.symbol}/chart/${period}`
           )
           .pipe(
             map(
