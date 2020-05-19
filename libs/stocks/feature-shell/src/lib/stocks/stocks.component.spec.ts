@@ -20,7 +20,7 @@ import { SharedUiChartModule } from '@coding-challenge/shared/ui/chart';
 import { PriceQueryFacade } from '@coding-challenge/stocks/data-access-price-query';
 import { StoreModule } from '@ngrx/store';
 
-import { StocksComponent } from './stocks.component';
+import { StocksComponent, TimePeriodValue } from './stocks.component';
 import { of } from 'rxjs';
 import { subDays } from 'date-fns';
 
@@ -74,12 +74,17 @@ describe('StocksComponent', () => {
 
     component.stockPickerForm.setValue({
       symbol: 'AAPL',
-      period: 'max',
+      period: TimePeriodValue.ALL,
       from: someDay,
       to: today
     });
     tick(1000);
 
-    expect(spy).toHaveBeenCalledWith('AAPL', 'max', someDay, today);
+    expect(spy).toHaveBeenCalledWith(
+      'AAPL',
+      TimePeriodValue.ALL,
+      someDay,
+      today
+    );
   }));
 });
