@@ -1,9 +1,14 @@
-<form [formGroup]="stockPickerForm">
+<form
+  [formGroup]="stockPickerForm"
+  aria-label="Stock Picker"
+  class="stocks-form"
+>
   <mat-form-field>
     <input
       matInput
-      placeholder="Symbol e.g AAPL"
+      placeholder="Enter Symbol e.g AAPL"
       formControlName="symbol"
+      role="textbox"
       value=""
     />
     <mat-error
@@ -18,8 +23,11 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Favorite time period</mat-label>
-    <mat-select formControlName="period">
+    <mat-label
+      >Favorite time period (Choose custom for setting your own
+      dates)</mat-label
+    >
+    <mat-select formControlName="period" role="listbox">
       <mat-option
         *ngFor="let timePeriod of timePeriods"
         [value]="timePeriod.value"
@@ -29,7 +37,37 @@
     </mat-select>
   </mat-form-field>
 
-  <button (click)="fetchQuote()" mat-raised-button>Go</button>
+  <div *ngIf="stockPickerForm.value.period === 'custom'">
+    <mat-form-field class="date-picker">
+      <label>
+        <input
+          matInput
+          [max]="today"
+          [matDatepicker]="from"
+          [matDatepickerFilter]="fromDateFilter"
+          formControlName="from"
+          placeholder="From"
+        />
+      </label>
+      <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+      <mat-datepicker #from></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field class="date-picker">
+      <label>
+        <input
+          matInput
+          [max]="today"
+          [matDatepicker]="to"
+          [matDatepickerFilter]="toDateFilter"
+          formControlName="to"
+          placeholder="To"
+        />
+      </label>
+      <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+      <mat-datepicker #to></mat-datepicker>
+    </mat-form-field>
+  </div>
 </form>
 
-<coding-challenge-chart [data$]="quotes$"></coding-challenge-chart>
+<coding-challenge-chart [chartData]="quotes$ | async"></coding-challenge-chart>
