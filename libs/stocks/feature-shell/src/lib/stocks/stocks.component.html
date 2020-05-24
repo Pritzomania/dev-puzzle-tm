@@ -1,9 +1,12 @@
-<form [formGroup]="stockPickerForm" aria-label="Stock Picker">
-  <mat-label>Enter Symbol</mat-label>
+<form
+  [formGroup]="stockPickerForm"
+  aria-label="Stock Picker"
+  class="stocks-form"
+>
   <mat-form-field>
     <input
       matInput
-      placeholder="Symbol e.g AAPL"
+      placeholder="Enter Symbol e.g AAPL"
       formControlName="symbol"
       role="textbox"
       value=""
@@ -30,9 +33,6 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-  <!--
-    Accessibility is also about working with the UX/business to come up with better experiences by making changes in static content(here, its the button text) if possible
-  -->
   <button (click)="fetchQuote()" mat-raised-button>Get quotes</button>
 </form>
 
