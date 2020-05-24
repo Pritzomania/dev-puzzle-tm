@@ -23,7 +23,10 @@
   </mat-form-field>
 
   <mat-form-field>
-    <mat-label>Favorite time period</mat-label>
+    <mat-label
+      >Favorite time period (Choose custom for setting your own
+      dates)</mat-label
+    >
     <mat-select formControlName="period" role="listbox">
       <mat-option
         *ngFor="let timePeriod of timePeriods"
