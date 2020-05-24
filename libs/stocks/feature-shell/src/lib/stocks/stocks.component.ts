@@ -5,6 +5,35 @@ import { Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 import { subDays } from 'date-fns';
 
+export enum TimePeriodViewValue {
+  ALL = 'All available data',
+  FIVE_YEARS = 'Five years',
+  TWO_YEARS = 'Two years',
+  ONE_YEAR = 'One year',
+  YEAR_TO_DATE = 'Year-to-date',
+  SIX_MONTHS = 'Six months',
+  THREE_MONTHS = 'Three months',
+  ONE_MONTH = 'One month',
+  CUSTOM = 'Custom'
+}
+
+export enum TimePeriodValue {
+  ALL = 'max',
+  FIVE_YEARS = '5y',
+  TWO_YEARS = '2y',
+  ONE_YEAR = '1y',
+  YEAR_TO_DATE = 'ytd',
+  SIX_MONTHS = '6m',
+  THREE_MONTHS = '3m',
+  ONE_MONTH = '1m',
+  CUSTOM = 'custom'
+}
+
+export interface TimePeriod {
+  viewValue: TimePeriodViewValue;
+  value: TimePeriodValue;
+}
+
 @Component({
   selector: 'coding-challenge-stocks',
   templateUrl: './stocks.component.html',
@@ -16,16 +45,38 @@ export class StocksComponent implements OnInit, OnDestroy {
   formSub$: Subscription;
   today: Date = new Date();
 
-  timePeriods = [
-    { viewValue: 'All available data', value: 'max' },
-    { viewValue: 'Five years', value: '5y' },
-    { viewValue: 'Two years', value: '2y' },
-    { viewValue: 'One year', value: '1y' },
-    { viewValue: 'Year-to-date', value: 'ytd' },
-    { viewValue: 'Six months', value: '6m' },
-    { viewValue: 'Three months', value: '3m' },
-    { viewValue: 'One month', value: '1m' },
-    { viewValue: 'Custom', value: 'custom' }
+  timePeriods: TimePeriod[] = [
+    { viewValue: TimePeriodViewValue.ALL, value: TimePeriodValue.ALL },
+    {
+      viewValue: TimePeriodViewValue.FIVE_YEARS,
+      value: TimePeriodValue.FIVE_YEARS
+    },
+    {
+      viewValue: TimePeriodViewValue.TWO_YEARS,
+      value: TimePeriodValue.TWO_YEARS
+    },
+    {
+      viewValue: TimePeriodViewValue.ONE_YEAR,
+      value: TimePeriodValue.ONE_YEAR
+    },
+    {
+      viewValue: TimePeriodViewValue.YEAR_TO_DATE,
+      value: TimePeriodValue.YEAR_TO_DATE
+    },
+    {
+      viewValue: TimePeriodViewValue.SIX_MONTHS,
+      value: TimePeriodValue.SIX_MONTHS
+    },
+    {
+      viewValue: TimePeriodViewValue.THREE_MONTHS,
+      value: TimePeriodValue.THREE_MONTHS
+    },
+    {
+      viewValue: TimePeriodViewValue.ONE_MONTH,
+      value: TimePeriodValue.ONE_MONTH
+    },
+
+    { viewValue: TimePeriodViewValue.CUSTOM, value: TimePeriodValue.CUSTOM }
   ];
 
   constructor(private fb: FormBuilder, private priceQuery: PriceQueryFacade) {
