@@ -1,9 +1,11 @@
-<form [formGroup]="stockPickerForm">
+<form [formGroup]="stockPickerForm" aria-label="Stock Picker">
+  <mat-label>Enter Symbol</mat-label>
   <mat-form-field>
     <input
       matInput
       placeholder="Symbol e.g AAPL"
       formControlName="symbol"
+      role="textbox"
       value=""
     />
     <mat-error
@@ -19,7 +21,7 @@
 
   <mat-form-field>
     <mat-label>Favorite time period</mat-label>
-    <mat-select formControlName="period">
+    <mat-select formControlName="period" role="listbox">
       <mat-option
         *ngFor="let timePeriod of timePeriods"
         [value]="timePeriod.value"
@@ -28,8 +30,10 @@
       </mat-option>
     </mat-select>
   </mat-form-field>
-
-  <button (click)="fetchQuote()" mat-raised-button>Go</button>
+  <!--
+    Accessibility is also about working with the UX/business to come up with better experiences by making changes in static content(here, its the button text) if possible
+  -->
+  <button (click)="fetchQuote()" mat-raised-button>Get quotes</button>
 </form>
 
 <coding-challenge-chart [chartData]="quotes$ | async"></coding-challenge-chart>
