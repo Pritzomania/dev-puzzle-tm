@@ -22,14 +22,19 @@ export class PriceQueryEffects {
     PriceQueryActionTypes.FetchPriceQuery,
     {
       run: (action: FetchPriceQuery, state: PriceQueryPartialState) => {
+        const isCustom = action.period === 'custom';
+        const period = isCustom ? 'max' : action.period;
         return this.httpClient
-          .get(
-            `${this.env.apiURL}/beta/stock/${action.symbol}/chart/${
-              action.period
-            }?token=${this.env.apiKey}`
+          .get<PriceQueryResponse[]>(
+            `api/beta/stock/${action.symbol}/chart/${period}`
           )
           .pipe(
-            map(resp => new PriceQueryFetched(resp as PriceQueryResponse[]))
+            map(
+              resp =>
+                new PriceQueryFetched(
+                  isCustom ? this.filterQuotes(action, resp) : resp
+                )
+            )
           );
       },
 
@@ -44,4 +49,14 @@ export class PriceQueryEffects {
     private httpClient: HttpClient,
     private dataPersistence: DataPersistence<PriceQueryPartialState>
   ) {}
+
+  filterQuotes(
+    action: FetchPriceQuery,
+    response: PriceQueryResponse[]
+  ): PriceQueryResponse[] {
+    return response.filter(data => {
+      const time = new Date(data.date).getTime();
+      return time >= action.from.getTime() && time <= action.to.getTime();
+    });
+  }
 }

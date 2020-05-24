@@ -16,9 +16,7 @@
               "libs/stocks/data-access-price-query/tsconfig.lib.json",
               "libs/stocks/data-access-price-query/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -47,13 +45,8 @@
             "main": "apps/stocks/src/main.ts",
             "polyfills": "apps/stocks/src/polyfills.ts",
             "tsConfig": "apps/stocks/tsconfig.app.json",
-            "assets": [
-              "apps/stocks/src/favicon.ico",
-              "apps/stocks/src/assets"
-            ],
-            "styles": [
-              "apps/stocks/src/styles.css"
-            ],
+            "assets": ["apps/stocks/src/favicon.ico", "apps/stocks/src/assets"],
+            "styles": ["apps/stocks/src/styles.css"],
             "scripts": [],
             "es5BrowserSupport": true
           },
@@ -88,7 +81,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "stocks:build",
-            "proxyConfig": "apps/stocks//proxy.conf.json"
+            "proxyConfig": "apps/stocks/proxy.conf.json"
           },
           "configurations": {
             "production": {
@@ -109,9 +102,7 @@
               "apps/stocks/tsconfig.app.json",
               "apps/stocks/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -169,9 +160,7 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "apps/stocks-e2e/tsconfig.e2e.json",
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         }
       }
@@ -189,9 +178,7 @@
               "libs/stocks/feature-shell/tsconfig.lib.json",
               "libs/stocks/feature-shell/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -218,9 +205,7 @@
               "libs/shared/ui/chart/tsconfig.lib.json",
               "libs/shared/ui/chart/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -247,9 +232,7 @@
               "libs/stocks/data-access-app-config/tsconfig.lib.json",
               "libs/stocks/data-access-app-config/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
@@ -275,9 +258,7 @@
             "outputPath": "dist/apps/stocks-api",
             "main": "apps/stocks-api/src/main.ts",
             "tsConfig": "apps/stocks-api/tsconfig.app.json",
-            "assets": [
-              "apps/stocks-api/src/assets"
-            ]
+            "assets": ["apps/stocks-api/src/assets"]
           },
           "configurations": {
             "production": {
@@ -307,9 +288,7 @@
               "apps/stocks-api/tsconfig.app.json",
               "apps/stocks-api/tsconfig.spec.json"
             ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
+            "exclude": ["**/node_modules/**"]
           }
         },
         "test": {
